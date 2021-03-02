@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import moment from 'moment';
 import Modal from 'react-modal';
 import DateTimePicker from 'react-datetime-picker';
@@ -7,7 +6,7 @@ import { useState } from 'react';
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../actions/ui';
-import { eventAddNew, eventClearActiveEvent, eventUpdated } from '../../actions/events';
+import { eventClearActiveEvent, startAddNew, startEventUpdate } from '../../actions/events';
 
 
 const customStyles = {
@@ -105,16 +104,9 @@ export const CalendarModal = () => {
         }
 
         if(activeEvent){
-            dispatch(eventUpdated(formValues));
+            dispatch(startEventUpdate(formValues));
         }else{
-            dispatch(eventAddNew({
-                ...formValues,
-                id: new Date().getTime(),
-                user:{
-                    _id: '123',
-                    name: 'Sebastian'
-                }
-            }));
+            dispatch(startAddNew(formValues));
         }
         
         setTittleValid(true);

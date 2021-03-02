@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import { fetchConToken, fetchSinToken } from "../helpers/fetch"
 import { types } from "../types/types";
+import { eventLogout } from "./events";
 
 
 export const startLogin = (email, password)=>{
@@ -27,7 +28,7 @@ export const startLogin = (email, password)=>{
 export const startRegister = (email, password, name)=>{
     return async(dispatch)=>{
 
-        const resp= await fetchSinToken('auth/new',{email,password,name},'POST');
+        const resp= await fetchSinToken('auth/new',{email, password, name},'POST');
         const body= await resp.json();
 
         if(body.ok){
@@ -81,6 +82,7 @@ export const startLogout = ()=>{
     return (dispatch)=>{
         localStorage.clear();
         dispatch(logout());
+        dispatch(eventLogout());
     }
 }
 

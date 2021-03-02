@@ -39,7 +39,7 @@ export const LoginScreen = () => {
             return Swal.fire('Error', 'Las contraseñas deben de ser iguales','Error');
         }
 
-        dispatch(startRegister(RName,REmail,RPassword,RPassword2));
+        dispatch(startRegister(REmail,RPassword,RName));
     }    
 
     return (
@@ -86,7 +86,7 @@ export const LoginScreen = () => {
                                 type="text"
                                 className="form-control"
                                 placeholder="Nombre"
-                                name='name'
+                                name='RName'
                                 value={RName}
                                 onChange={handleRegisterInputChange}
                             />
